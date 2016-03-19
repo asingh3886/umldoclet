@@ -193,12 +193,12 @@
                             </docletArtifact>
                             <docencoding>UTF-8</docencoding>
                             <additionalparam>
-                                -umlLogLevel INFO
-                                -umlBasePath "${project.build.directory}${file.separator}test-uml"
-                                -umlSkipStandardDoclet true
-                                -umlCommand "hide empty members"
-                                -umlCommand "hide &lt;&lt;Stereotype&gt;&gt; circle"
-                                -umlIncludeMethodReturntypes true
+                                  -umlLogLevel INFO
+                                  -umlBasePath "${project.build.directory}${file.separator}test-uml"
+                                  -umlSkipStandardDoclet true
+                                  -umlCommand "hide empty members"
+                                  -umlCommand "hide &lt;&lt;Stereotype&gt;&gt; circle"
+                                  -umlIncludeMethodReturntypes true
                             </additionalparam>
                         </configuration>
                     </execution>

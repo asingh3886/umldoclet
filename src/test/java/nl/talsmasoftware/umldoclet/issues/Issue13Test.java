@@ -40,7 +40,7 @@ public class Issue13Test {
     private static final Logger LOGGER = LoggerFactory.getLogger(Issue13Test.class);
 
     @Test
-    @Ignore // Issue 13 still needs to be fixed! Test passes witout umldoclet and fails with it.
+//    @Ignore // Issue 13 still needs to be fixed! Test passes witout umldoclet and fails with it.
     public void testJavaDocErrors() throws MavenInvocationException {
         InvocationRequest request = new DefaultInvocationRequest();
         request.setPomFile(new File("src/test/resources/issue-13/pom.xml"));

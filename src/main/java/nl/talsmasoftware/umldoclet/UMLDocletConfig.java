@@ -95,7 +95,7 @@ public class UMLDocletConfig extends EnumMap<UMLDocletConfig.Setting, String[]> 
             this.optionLength = optionLength;
         }
 
-        private static Setting forOption(String... option) {
+        static Setting forOption(String... option) {
             if (option != null && option.length > 0) {
                 for (Setting setting : values()) {
                     if (setting.optionName.equalsIgnoreCase(option[0].trim())) {
@@ -507,17 +507,17 @@ public class UMLDocletConfig extends EnumMap<UMLDocletConfig.Setting, String[]> 
     }
 
     private void initializeUmlLogging() {
-        // Clear levels on any previously instantiated sub-loggers.
-        for (Enumeration<String> en = LogManager.getLogManager().getLoggerNames(); en.hasMoreElements(); ) {
-            String loggerName = en.nextElement();
-            if (loggerName.startsWith(UML_ROOTLOGGER_NAME)) {
-                Logger.getLogger(loggerName).setLevel(null);
-            }
-        }
-        // Configure the umldoclet root logger.
-        this.umlLogHandler = new UmlLogHandler();
-        Logger.getLogger(UML_ROOTLOGGER_NAME).setLevel(this.umlLogLevel());
-        Logger.getLogger(UML_ROOTLOGGER_NAME).addHandler(this.umlLogHandler);
+//        // Clear levels on any previously instantiated sub-loggers.
+//        for (Enumeration<String> en = LogManager.getLogManager().getLoggerNames(); en.hasMoreElements(); ) {
+//            String loggerName = en.nextElement();
+//            if (loggerName.startsWith(UML_ROOTLOGGER_NAME)) {
+//                Logger.getLogger(loggerName).setLevel(null);
+//            }
+//        }
+//        // Configure the umldoclet root logger.
+//        this.umlLogHandler = new UmlLogHandler();
+//        Logger.getLogger(UML_ROOTLOGGER_NAME).setLevel(this.umlLogLevel());
+//        Logger.getLogger(UML_ROOTLOGGER_NAME).addHandler(this.umlLogHandler);
     }
 
     @Override

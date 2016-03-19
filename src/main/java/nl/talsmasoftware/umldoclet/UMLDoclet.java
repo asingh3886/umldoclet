@@ -20,12 +20,12 @@ import com.sun.javadoc.DocErrorReporter;
 import com.sun.javadoc.PackageDoc;
 import com.sun.javadoc.RootDoc;
 import com.sun.tools.doclets.standard.Standard;
+import com.sun.tools.javadoc.RootDocImpl;
 import nl.talsmasoftware.umldoclet.rendering.UMLDiagram;
 
 import java.io.*;
-import java.util.Comparator;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.lang.reflect.Field;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -58,19 +58,45 @@ public class UMLDoclet extends Standard implements Closeable {
         LOGGER.log(Level.FINE, "Initialized {0}...", config);
     }
 
+    private static String[][] stripUmlOptions(String[][] options) {
+        List<String[]> copy = stripUmlOptions(Arrays.asList(options));
+        return copy.toArray(new String[copy.size()][]);
+    }
+
+    private static List<String[]> stripUmlOptions(List<String[]> options) {
+        List<String[]> copy = new ArrayList<>(options.size());
+        for (String[] option : options) {
+            if (UMLDocletConfig.Setting.forOption(option) == null) {
+                copy.add(option);
+            }
+        }
+        return copy;
+    }
+
     public static int optionLength(String option) {
-        return UMLDocletConfig.optionLength(option);
+//        return UMLDocletConfig.optionLength(option);
+        return Standard.optionLength(option);
     }
 
     public static boolean validOptions(String[][] options, DocErrorReporter reporter) {
-        return UMLDocletConfig.validOptions(options, reporter);
+//        return UMLDocletConfig.validOptions(options, reporter);
+        return Standard.validOptions(stripUmlOptions(options), reporter);
     }
 
-    public static boolean start(RootDoc rootDoc) {
-        try (UMLDoclet umlDoclet = new UMLDoclet(rootDoc)) {
-            return umlDoclet.generateUMLDiagrams()
-                    && (umlDoclet.config.skipStandardDoclet() || Standard.start(rootDoc));
+    public static boolean start(final RootDoc rootDoc) {
+//        try (UMLDoclet umlDoclet = new UMLDoclet(rootDoc)) {
+//            return umlDoclet.generateUMLDiagrams()
+//                    && (umlDoclet.config.skipStandardDoclet() || Standard.start(rootDoc));
+//        }
+        try {
+            Field field = RootDocImpl.class.getDeclaredField("options");
+            field.setAccessible(true);
+            field.set(rootDoc, stripUmlOptions((List<String[]>) field.get(rootDoc)));
+            field.setAccessible(false);
+        } catch (ReflectiveOperationException | RuntimeException e) {
+            throw new IllegalStateException("Could not 'fix' root doc options.", e);
         }
+        return Standard.start(rootDoc);
     }
 
     public boolean generateUMLDiagrams() {
