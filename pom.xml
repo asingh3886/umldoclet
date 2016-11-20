@@ -32,6 +32,11 @@
 
     <developers>
         <developer>
+            <id>gerald</id>
+            <name>Gerald Boersma</name>
+            <url>https://github.com/gboersma</url>
+        </developer>
+        <developer>
             <id>sjoerd</id>
             <name>Sjoerd Talsma</name>
             <email>sjoerd@talsma-ict.nl</email>
@@ -63,6 +68,7 @@
         <logback.version>1.1.7</logback.version>
         <maven-invoker.version>2.2</maven-invoker.version>
 
+        <!-- build -->
         <maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
@@ -241,11 +247,13 @@
                             <overWrite>true</overWrite>
                             <fileSets>
                                 <fileSet>
-                                    <sourceFile>target/apidocs/nl/talsmasoftware/umldoclet/rendering/package.puml</sourceFile>
+                                    <sourceFile>target/apidocs/nl/talsmasoftware/umldoclet/rendering/package.puml
+                                    </sourceFile>
                                     <destinationFile>example/rendering-package.puml</destinationFile>
                                 </fileSet>
                                 <fileSet>
-                                    <sourceFile>target/apidocs/nl/talsmasoftware/umldoclet/rendering/package.svg</sourceFile>
+                                    <sourceFile>target/apidocs/nl/talsmasoftware/umldoclet/rendering/package.svg
+                                    </sourceFile>
                                     <destinationFile>example/rendering-package.svg</destinationFile>
                                 </fileSet>
                             </fileSets>
