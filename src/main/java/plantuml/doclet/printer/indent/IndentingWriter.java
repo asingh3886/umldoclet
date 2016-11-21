@@ -12,8 +12,9 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
-package nl.talsmasoftware.umldoclet.rendering.indent;
+package plantuml.doclet.printer.indent;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -23,8 +24,7 @@ import static java.lang.Character.isWhitespace;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Writer implementation that will indent each new line with a specified number of whitespace
- * characters (four by default).
+ * Writer implementation that will indent each new line with a specified {@link Indentation} (four spaces by default).
  * The writing itself can be delegated to any other {@link Writer} implementation.
  *
  * @author Sjoerd Talsma
@@ -34,8 +34,8 @@ public class IndentingWriter extends Writer {
     private final Writer delegate;
     private final Indentation indentation;
 
-    private final AtomicBoolean addWhitespace = new AtomicBoolean(false);
     private char lastWritten = '\n';
+    private final AtomicBoolean addWhitespace = new AtomicBoolean(false);
 
     protected IndentingWriter(Writer delegate, Indentation indentation) {
         super(requireNonNull(delegate, "Delegate writer is required."));

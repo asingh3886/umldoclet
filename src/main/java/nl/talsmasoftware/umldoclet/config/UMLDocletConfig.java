@@ -18,8 +18,8 @@ package nl.talsmasoftware.umldoclet.config;
 
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.DocErrorReporter;
-import nl.talsmasoftware.umldoclet.logging.LogSupport;
-import nl.talsmasoftware.umldoclet.rendering.indent.Indentation;
+import plantuml.doclet.logging.LogSupport;
+import plantuml.doclet.printer.indent.Indentation;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,10 +28,10 @@ import java.util.*;
 import java.util.regex.Matcher;
 
 import static nl.talsmasoftware.umldoclet.config.UMLDocletConfig.Setting.*;
-import static nl.talsmasoftware.umldoclet.logging.LogSupport.*;
 import static nl.talsmasoftware.umldoclet.model.Model.isDeprecated;
-import static nl.talsmasoftware.umldoclet.rendering.indent.Indentation.spaces;
-import static nl.talsmasoftware.umldoclet.rendering.indent.Indentation.tabs;
+import static plantuml.doclet.logging.LogSupport.*;
+import static plantuml.doclet.printer.indent.Indentation.spaces;
+import static plantuml.doclet.printer.indent.Indentation.tabs;
 
 /**
  * Class containing all possible Doclet options for the UML doclet.

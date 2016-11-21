@@ -27,9 +27,9 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Locale;
 
-import static nl.talsmasoftware.umldoclet.logging.LogSupport.*;
 import static nl.talsmasoftware.umldoclet.model.Reference.Side.from;
 import static nl.talsmasoftware.umldoclet.model.Reference.Side.to;
+import static plantuml.doclet.logging.LogSupport.*;
 
 /**
  * This class is here to support references that were available from JavaDoc tags from the old PlantUML doclet.

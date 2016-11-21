@@ -16,6 +16,8 @@
 package nl.talsmasoftware.umldoclet.rendering.indent;
 
 import org.junit.Test;
+import plantuml.doclet.printer.indent.Indentation;
+import plantuml.doclet.printer.indent.IndentingPrintWriter;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -37,7 +39,7 @@ public class IndentingPrintWriterTest {
     @Test
     public void testIndentingPrintWriter_nullWriter() {
         try {
-            new IndentingPrintWriter(null, Indentation.DEFAULT);
+            new IndentingPrintWriter(null, Indentation.DEFAULT){};
             fail("Exception expected.");
         } catch (NullPointerException expected) {
             assertThat("Exception message", expected.getMessage(), is(not(nullValue())));

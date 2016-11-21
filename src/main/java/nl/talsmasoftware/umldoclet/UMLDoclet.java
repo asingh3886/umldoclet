@@ -18,10 +18,10 @@ package nl.talsmasoftware.umldoclet;
 import com.sun.javadoc.*;
 import com.sun.tools.doclets.standard.Standard;
 import nl.talsmasoftware.umldoclet.config.UMLDocletConfig;
-import nl.talsmasoftware.umldoclet.logging.GlobalPosition;
 import nl.talsmasoftware.umldoclet.rendering.DiagramRenderer;
 import nl.talsmasoftware.umldoclet.rendering.plantuml.PlantumlImageWriter;
-import nl.talsmasoftware.umldoclet.rendering.plantuml.PlantumlSupport;
+import plantuml.doclet.logging.GlobalPosition;
+import plantuml.support.PlantumlSupport;
 
 import java.io.*;
 import java.util.Comparator;
@@ -29,7 +29,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import static java.util.Objects.requireNonNull;
-import static nl.talsmasoftware.umldoclet.logging.LogSupport.*;
+import static plantuml.doclet.logging.LogSupport.*;
 
 /**
  * UML doclet that generates <a href="http://plantuml.com">PlantUML</a> class diagrams from your java code just as

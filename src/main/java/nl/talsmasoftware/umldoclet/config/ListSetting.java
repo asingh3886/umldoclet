@@ -17,7 +17,7 @@
 
 package nl.talsmasoftware.umldoclet.config;
 
-import nl.talsmasoftware.umldoclet.logging.LogSupport;
+import plantuml.doclet.logging.LogSupport;
 
 import java.util.*;
 

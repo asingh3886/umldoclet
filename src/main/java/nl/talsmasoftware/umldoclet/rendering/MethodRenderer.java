@@ -16,8 +16,8 @@
 package nl.talsmasoftware.umldoclet.rendering;
 
 import com.sun.javadoc.*;
-import nl.talsmasoftware.umldoclet.logging.GlobalPosition;
-import nl.talsmasoftware.umldoclet.rendering.indent.IndentingPrintWriter;
+import plantuml.doclet.logging.GlobalPosition;
+import plantuml.doclet.printer.indent.IndentingPrintWriter;
 
 import java.util.LinkedHashSet;
 import java.util.Objects;
@@ -27,8 +27,8 @@ import static java.lang.Character.toLowerCase;
 import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableSet;
 import static java.util.Objects.requireNonNull;
-import static nl.talsmasoftware.umldoclet.logging.LogSupport.*;
 import static nl.talsmasoftware.umldoclet.model.Model.isDeprecated;
+import static plantuml.doclet.logging.LogSupport.*;
 
 /**
  * Method renderer.
