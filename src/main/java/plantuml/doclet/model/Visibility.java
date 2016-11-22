@@ -29,11 +29,4 @@ public enum Visibility {
     PRIVATE,
     PACKAGE_PRIVATE;
 
-    /**
-     * Interface marking a model element to have visibility.
-     */
-    public interface WithVisibility {
-        Visibility getVisibility();
-    }
-
 }

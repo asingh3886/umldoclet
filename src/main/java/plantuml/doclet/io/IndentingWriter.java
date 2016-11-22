@@ -64,7 +64,8 @@ public class IndentingWriter extends Writer {
      * @see Indentation#DEFAULT
      */
     public static IndentingWriter wrap(Writer delegate, Indentation indentation) {
-        return delegate instanceof IndentingWriter ? ((IndentingWriter) delegate).withIndentation(indentation)
+        return delegate instanceof IndentingWriter
+                ? ((IndentingWriter) delegate).withIndentation(indentation)
                 : new IndentingWriter(delegate, indentation);
     }
 
@@ -77,7 +78,7 @@ public class IndentingWriter extends Writer {
      * @return Either this writer if the indentation is already correct,
      * or a new IndentingWriter with the adapted indentation.
      */
-    public IndentingWriter withIndentation(Indentation newIndentation) {
+    private IndentingWriter withIndentation(Indentation newIndentation) {
         return newIndentation == null || this.indentation.equals(newIndentation) ? this
                 : new IndentingWriter(delegate, newIndentation, lastWritten, addWhitespace.get());
     }
@@ -102,9 +103,8 @@ public class IndentingWriter extends Writer {
      * The whitespace character will also not be written until there are other characters that need to be written.
      *
      * @return Reference to this writer for chaining purposes.
-     * @throws IOException
      */
-    public IndentingWriter whitespace() throws IOException {
+    public IndentingWriter whitespace() {
         addWhitespace.set(true);
         return this;
     }

@@ -22,6 +22,8 @@ import java.io.File;
 import java.net.URI;
 
 /**
+ * Central class for doclet options.
+ *
  * @author Gerald Boersma
  * @author Sjoerd Talsma
  */
@@ -32,13 +34,14 @@ public class Options {
     private final class ConfiguredNameResolver implements NameResolver {
 
         @Override
-        public File resolveFilename(String filename) {
-            throw new UnsupportedOperationException("To be implemented.");
+        public File resolveFilename(String packagename, String basename, String extension) {
+            return null;
         }
 
         @Override
-        public URI resolveLink(String filename) {
-            throw new UnsupportedOperationException("To be implemented.");
+        public URI resolveLink(String packagename, String basename, String extension) {
+            return null;
         }
     }
+
 }

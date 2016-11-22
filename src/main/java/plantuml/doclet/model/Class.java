@@ -14,35 +14,26 @@
  * limitations under the License.
  */
 
-package plantuml.doclet.model.javadoc;
-
-import com.sun.javadoc.RootDoc;
-import plantuml.doclet.model.Model;
-import plantuml.doclet.model.Package;
-import plantuml.doclet.model.Type;
+package plantuml.doclet.model;
 
 import java.util.Collection;
 
-import static java.util.Collections.emptySet;
-
 /**
- * Implementation of the {@link Model} based on the current JavaDoc API.
+ * Represents a class internal or external to the model.
  *
  * @author Gerald Boersma
  * @author Sjoerd Talsma
  */
-public class JavaDocModel implements Model {
+public interface Class extends Type {
 
-    public JavaDocModel(RootDoc root) {
-    }
+    /**
+     * @return The superclass of this class.
+     */
+    Class getSuperclass();
 
-    @Override
-    public Collection<Package> getPackages() {
-        return emptySet();
-    }
+    /**
+     * @return The constructors of this class.
+     */
+    Collection<Constructor> getConstructors();
 
-    @Override
-    public Collection<Type> getTypes() {
-        return emptySet();
-    }
 }

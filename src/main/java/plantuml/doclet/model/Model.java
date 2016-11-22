@@ -27,8 +27,13 @@ import java.util.Collection;
 public interface Model {
 
     /**
-     * @return All classes contained in this model.
+     * @return All packages contained in this model.
      */
-    Collection<ModelClass> getClasses();
+    Collection<Package> getPackages();
+
+    /**
+     * @return All types (classes, interfaces and enumerations) contained in this model.
+     */
+    Collection<Type> getTypes();
 
 }
