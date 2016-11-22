@@ -18,8 +18,8 @@ package nl.talsmasoftware.umldoclet.rendering;
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.PackageDoc;
 import nl.talsmasoftware.umldoclet.config.UMLDocletConfig;
-import plantuml.doclet.logging.GlobalPosition;
-import plantuml.doclet.printer.indent.IndentingPrintWriter;
+import nl.talsmasoftware.umldoclet.logging.GlobalPosition;
+import nl.talsmasoftware.umldoclet.rendering.indent.IndentingPrintWriter;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;

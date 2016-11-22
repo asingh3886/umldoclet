@@ -15,7 +15,7 @@
  *
  */
 
-package plantuml.doclet.printer.indent;
+package nl.talsmasoftware.umldoclet.rendering.indent;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -85,8 +85,7 @@ public final class Indentation implements CharSequence, Serializable {
      * @param level The current indentation level (multiply this with the width for the initial number of spaces).
      * @return The indentation level as <code>level</code> multiples of <code>width</code> spaces.
      */
-    public static Indentation spaces(int width, final int level) {
-        if (width < 0) width = DEFAULT.ch == ' ' ? DEFAULT.width : 4;
+    public static Indentation spaces(final int width, final int level) {
         if (width == 0) return NONE;
         else if (width == 4 && level < FOUR_SPACES.length) {
             return level < 0 ? FOUR_SPACES[0] : FOUR_SPACES[level];
@@ -105,14 +104,14 @@ public final class Indentation implements CharSequence, Serializable {
      * @return This indentation with the level increased by one.
      */
     public Indentation increase() {
-        return resolve(width, ch, level + 1);
+        return width > 0 ? resolve(width, ch, level + 1) : this;
     }
 
     /**
      * @return This indentation with the level decreased by one (if there was indentation left to decrease).
      */
     public Indentation decrease() {
-        return resolve(width, ch, level - 1);
+        return width > 0 && level > 0 ? resolve(width, ch, level - 1) : this;
     }
 
     /**

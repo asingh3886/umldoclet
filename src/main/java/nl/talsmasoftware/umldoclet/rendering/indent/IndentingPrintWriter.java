@@ -12,9 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
-package plantuml.doclet.printer.indent;
+package nl.talsmasoftware.umldoclet.rendering.indent;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,12 +27,8 @@ import static java.util.Objects.requireNonNull;
  * <p>
  * Care was taken to ensure that not only lines ended by calls to {@link #println()} methods trigger indentation,
  * but any other newline characters as well.
- * <p>
- * Indenting is performed by an underlying {@link IndentingWriter}; most methods from this {@link IndentingPrintWriter}
- * are overridden merely to ensure the correct return-type for method chaining purposes.
  *
  * @author Sjoerd Talsma
- * @see IndentingWriter
  */
 public class IndentingPrintWriter extends PrintWriter {
 
@@ -55,7 +50,7 @@ public class IndentingPrintWriter extends PrintWriter {
      */
     public static IndentingPrintWriter wrap(Writer delegate, Indentation indentation) {
         return delegate instanceof IndentingPrintWriter ? (IndentingPrintWriter) delegate
-                : new IndentingPrintWriter(delegate, indentation);
+                : new IndentingPrintWriter(delegate, null);
     }
 
     /**
@@ -83,8 +78,11 @@ public class IndentingPrintWriter extends PrintWriter {
 
     public IndentingPrintWriter whitespace() {
         try {
-            if (out instanceof IndentingWriter) ((IndentingWriter) out).whitespace();
-            else out.append(' ');
+            if (out instanceof IndentingWriter) {
+                ((IndentingWriter) out).whitespace();
+            } else {
+                out.append(' ');
+            }
             return this;
         } catch (IOException ioe) {
             throw new IllegalStateException("Error writing whitespace: " + ioe.getMessage(), ioe);

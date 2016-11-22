@@ -18,19 +18,19 @@ package nl.talsmasoftware.umldoclet.rendering;
 
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.MethodDoc;
+import nl.talsmasoftware.umldoclet.logging.GlobalPosition;
 import nl.talsmasoftware.umldoclet.model.Reference;
 import nl.talsmasoftware.umldoclet.model.Reference.Side;
-import plantuml.doclet.logging.GlobalPosition;
-import plantuml.doclet.printer.indent.IndentingPrintWriter;
+import nl.talsmasoftware.umldoclet.rendering.indent.IndentingPrintWriter;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
+import static nl.talsmasoftware.umldoclet.logging.LogSupport.*;
 import static nl.talsmasoftware.umldoclet.model.Reference.Side.from;
 import static nl.talsmasoftware.umldoclet.model.Reference.Side.to;
-import static plantuml.doclet.logging.LogSupport.*;
 
 /**
  * Renderer for class references.

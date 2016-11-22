@@ -19,10 +19,10 @@ package nl.talsmasoftware.umldoclet.rendering;
 
 import com.sun.javadoc.DocErrorReporter;
 import nl.talsmasoftware.umldoclet.config.UMLDocletConfig;
+import nl.talsmasoftware.umldoclet.rendering.indent.IndentingPrintWriter;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import plantuml.doclet.printer.indent.IndentingPrintWriter;
 
 import static nl.talsmasoftware.umldoclet.testing.Testing.NEWLINE;
 import static org.hamcrest.MatcherAssert.assertThat;

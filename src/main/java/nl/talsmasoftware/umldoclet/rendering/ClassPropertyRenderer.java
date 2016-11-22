@@ -20,9 +20,9 @@ package nl.talsmasoftware.umldoclet.rendering;
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.MethodDoc;
 import com.sun.javadoc.Type;
+import nl.talsmasoftware.umldoclet.logging.LogSupport;
 import nl.talsmasoftware.umldoclet.model.Model;
 import nl.talsmasoftware.umldoclet.model.Reference;
-import plantuml.doclet.logging.LogSupport;
 
 import java.util.Collection;
 

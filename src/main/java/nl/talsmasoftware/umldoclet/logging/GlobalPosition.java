@@ -14,8 +14,7 @@
  * limitations under the License.
  *
  */
-
-package plantuml.doclet.logging;
+package nl.talsmasoftware.umldoclet.logging;
 
 import com.sun.javadoc.Doc;
 import com.sun.javadoc.SourcePosition;

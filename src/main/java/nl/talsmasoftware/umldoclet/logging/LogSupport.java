@@ -15,7 +15,7 @@
  *
  */
 
-package plantuml.doclet.logging;
+package nl.talsmasoftware.umldoclet.logging;
 
 import com.sun.javadoc.DocErrorReporter;
 import com.sun.javadoc.SourcePosition;

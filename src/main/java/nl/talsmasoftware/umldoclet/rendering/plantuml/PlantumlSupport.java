@@ -12,11 +12,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
-package plantuml.support;
+package nl.talsmasoftware.umldoclet.rendering.plantuml;
 
-import plantuml.doclet.logging.LogSupport;
+import nl.talsmasoftware.umldoclet.logging.LogSupport;
 
 /**
  * Simple class to perform detection of the plantuml library on the classpath.

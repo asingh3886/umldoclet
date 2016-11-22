@@ -17,16 +17,16 @@ package nl.talsmasoftware.umldoclet.rendering;
 
 import com.sun.javadoc.FieldDoc;
 import com.sun.javadoc.ProgramElementDoc;
-import plantuml.doclet.logging.GlobalPosition;
-import plantuml.doclet.logging.LogSupport;
-import plantuml.doclet.printer.indent.IndentingPrintWriter;
+import nl.talsmasoftware.umldoclet.logging.GlobalPosition;
+import nl.talsmasoftware.umldoclet.logging.LogSupport;
+import nl.talsmasoftware.umldoclet.rendering.indent.IndentingPrintWriter;
 
 import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
+import static nl.talsmasoftware.umldoclet.logging.LogSupport.concatLowercaseParts;
+import static nl.talsmasoftware.umldoclet.logging.LogSupport.trace;
 import static nl.talsmasoftware.umldoclet.model.Model.isDeprecated;
-import static plantuml.doclet.logging.LogSupport.concatLowercaseParts;
-import static plantuml.doclet.logging.LogSupport.trace;
 
 /**
  * Created on 17-02-2016.

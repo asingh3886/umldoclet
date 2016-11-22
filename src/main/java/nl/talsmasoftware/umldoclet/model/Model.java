@@ -25,8 +25,8 @@ import java.util.Set;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableSet;
-import static plantuml.doclet.logging.LogSupport.trace;
-import static plantuml.doclet.logging.LogSupport.warn;
+import static nl.talsmasoftware.umldoclet.logging.LogSupport.trace;
+import static nl.talsmasoftware.umldoclet.logging.LogSupport.warn;
 
 /**
  * @author Sjoerd Talsma

@@ -15,7 +15,7 @@
  */
 package nl.talsmasoftware.umldoclet.rendering;
 
-import plantuml.doclet.printer.indent.IndentingPrintWriter;
+import nl.talsmasoftware.umldoclet.rendering.indent.IndentingPrintWriter;
 
 import static java.util.Objects.requireNonNull;
 

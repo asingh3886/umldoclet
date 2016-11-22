@@ -16,8 +16,8 @@
 package nl.talsmasoftware.umldoclet.rendering;
 
 import com.sun.javadoc.*;
-import plantuml.doclet.logging.GlobalPosition;
-import plantuml.doclet.printer.indent.IndentingPrintWriter;
+import nl.talsmasoftware.umldoclet.logging.GlobalPosition;
+import nl.talsmasoftware.umldoclet.rendering.indent.IndentingPrintWriter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,9 +25,9 @@ import java.util.List;
 import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
+import static nl.talsmasoftware.umldoclet.logging.LogSupport.debug;
+import static nl.talsmasoftware.umldoclet.logging.LogSupport.trace;
 import static nl.talsmasoftware.umldoclet.model.Model.isDeprecated;
-import static plantuml.doclet.logging.LogSupport.debug;
-import static plantuml.doclet.logging.LogSupport.trace;
 
 /**
  * Renderer to produce PlantUML output for a single class.

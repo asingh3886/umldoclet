@@ -17,8 +17,8 @@
 
 package nl.talsmasoftware.umldoclet.rendering;
 
-import plantuml.doclet.logging.LogSupport;
-import plantuml.doclet.printer.indent.IndentingPrintWriter;
+import nl.talsmasoftware.umldoclet.logging.LogSupport;
+import nl.talsmasoftware.umldoclet.rendering.indent.IndentingPrintWriter;
 
 import java.util.Objects;
 
