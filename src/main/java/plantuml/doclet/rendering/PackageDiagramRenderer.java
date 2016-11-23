@@ -14,45 +14,31 @@
  * limitations under the License.
  */
 
-package plantuml.doclet.model.javadoc;
+package plantuml.doclet.rendering;
 
-import com.sun.javadoc.RootDoc;
+import plantuml.doclet.io.IndentingPrintWriter;
 import plantuml.doclet.model.Model;
 import plantuml.doclet.model.Package;
-import plantuml.doclet.model.Type;
-
-import java.util.Collection;
-
-import static java.util.Collections.emptySet;
+import plantuml.doclet.options.Options;
 
 /**
- * Implementation of the {@link Model} based on the current JavaDoc API.
- *
- * @author Gerald Boersma
  * @author Sjoerd Talsma
  */
-public class JavaDocModel implements Model {
+public class PackageDiagramRenderer extends ModelRenderer {
 
-    public JavaDocModel(RootDoc root) {
+    protected final Package pkg;
+
+    public PackageDiagramRenderer(Model model, Options options, String qualifiedPackageName) {
+        super(model, options);
+        this.pkg = model.findPackage(qualifiedPackageName);
+        if (pkg == null) throw new IllegalArgumentException(
+                String.format("Package was not encountered in the model: \"%s\".", qualifiedPackageName));
     }
 
     @Override
-    public Collection<Package> getPackages() {
-        return emptySet();
+    public IndentingPrintWriter renderTo(IndentingPrintWriter writer) {
+        // TODO obviously
+        return writer;
     }
 
-    @Override
-    public Package findPackage(String qualifiedName) {
-        return null;
-    }
-
-    @Override
-    public Collection<Type> getTypes() {
-        return emptySet();
-    }
-
-    @Override
-    public Type findType(String qualifiedName) {
-        return null;
-    }
 }

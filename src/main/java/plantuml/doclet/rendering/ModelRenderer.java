@@ -22,14 +22,25 @@ import plantuml.doclet.options.Options;
 import static java.util.Objects.requireNonNull;
 
 /**
+ * Abstract base definition for any 'renderer' implementation that can write the model to a particular output.
+ * <p>
+ * Each specific ModelRenderer implementation 'knows' how to render a particular UML diagram type.
+ *
  * @author Sjoerd Talsma
  */
 public abstract class ModelRenderer implements Renderer {
 
+    /**
+     * The UML model being rendered (guaranteed, non-<code>null</code>).
+     */
     protected final Model model;
+
+    /**
+     * The options to take into account when rendering the diagram (guaranteed, non-<code>null</code>).
+     */
     protected final Options options;
 
-    public ModelRenderer(Model model, Options options) {
+    protected ModelRenderer(Model model, Options options) {
         this.model = requireNonNull(model, "Model was <null>.");
         this.options = requireNonNull(options, "Options were <null>.");
     }

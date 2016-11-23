@@ -31,9 +31,13 @@ public interface Model {
      */
     Collection<Package> getPackages();
 
+    Package findPackage(String qualifiedName);
+
     /**
      * @return All types (classes, interfaces and enumerations) contained in this model.
      */
     Collection<Type> getTypes();
+
+    Type findType(String qualifiedName);
 
 }
