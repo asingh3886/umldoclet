@@ -34,6 +34,7 @@ import static java.util.Collections.emptySet;
 public class JavaDocModel implements Model {
 
     public JavaDocModel(RootDoc root) {
+
     }
 
     @Override
@@ -55,4 +56,5 @@ public class JavaDocModel implements Model {
     public Type findType(String qualifiedName) {
         return null;
     }
+
 }

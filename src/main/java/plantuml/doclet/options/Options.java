@@ -20,6 +20,10 @@ import plantuml.doclet.io.NameResolver;
 
 import java.io.File;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import static java.util.Collections.*;
 
 /**
  * Central class for doclet options.
@@ -30,6 +34,41 @@ import java.net.URI;
 public class Options {
 
     public final NameResolver nameresolver = new ConfiguredNameResolver();
+    public final Collection<String> validationMessages;
+    public final String[][] unsupportedOptions;
+
+
+
+    public Options(String[][] options) {
+        final ArrayList<String> messages = new ArrayList<>();
+        final ArrayList<String[]> unsupported = new ArrayList<>();
+
+        if (options != null) for (String[] option : options) {
+        }
+
+        // Keep messages as immutable collection.
+        messages.trimToSize();
+        this.validationMessages = messages.isEmpty() ? emptySet()
+                : messages.size() == 1 ? singleton(messages.get(0))
+                : unmodifiableCollection(messages);
+        // Copy all unsupported options into its own array to be passed on to the standard Doclet.
+        this.unsupportedOptions = unsupported.toArray(new String[unsupported.size()][]);
+    }
+
+    /**
+     * An option is considered supported by this doclet if has a recognized option length greater than zero.
+     *
+     * @param optionName The name of the option to check for.
+     * @return <code>true</code> if the option is supported by this doclet, otherwise <code>false</code> in which case
+     * it probably is meant for the Standard doclet instead.
+     */
+    public static boolean isSupported(String optionName) {
+        return optionLength(optionName) > 0;
+    }
+
+    public static int optionLength(String optionName) {
+        return 0;
+    }
 
     private final class ConfiguredNameResolver implements NameResolver {
 
