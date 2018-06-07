@@ -22,16 +22,24 @@ import net.sourceforge.plantuml.version.Version;
 import nl.talsmasoftware.umldoclet.javadoc.DocletConfig;
 import nl.talsmasoftware.umldoclet.javadoc.UMLFactory;
 import nl.talsmasoftware.umldoclet.uml.UMLDiagram;
+import nl.talsmasoftware.umltaglet.UMLTaglet;
 
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
+import java.util.Collections;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
-import static nl.talsmasoftware.umldoclet.logging.Message.*;
+import static java.util.Collections.singletonList;
+import static java.util.Collections.unmodifiableSet;
+import static nl.talsmasoftware.umldoclet.logging.Message.DOCLET_COPYRIGHT;
+import static nl.talsmasoftware.umldoclet.logging.Message.DOCLET_VERSION;
+import static nl.talsmasoftware.umldoclet.logging.Message.ERROR_UNANTICIPATED_ERROR_GENERATING_UML;
+import static nl.talsmasoftware.umldoclet.logging.Message.PLANTUML_COPYRIGHT;
 
 /**
  * UML doclet that generates <a href="http://plantuml.com">PlantUML</a> class diagrams from your java code just as
@@ -43,6 +51,7 @@ import static nl.talsmasoftware.umldoclet.logging.Message.*;
 public class UMLDoclet extends StandardDoclet {
 
     private final DocletConfig config;
+    private Set<Option> supportedOptions = null;
 
     public UMLDoclet() {
         super();
@@ -53,6 +62,9 @@ public class UMLDoclet extends StandardDoclet {
     public void init(Locale locale, Reporter reporter) {
         config.init(locale, reporter);
         super.init(locale, reporter);
+        getSupportedOptions().stream()
+                .filter(option -> option.getNames().contains("-taglet")).findFirst()
+                .ifPresent(option -> option.process("-taglet", singletonList(UMLTaglet.class.getName())));
     }
 
     @Override
@@ -62,7 +74,10 @@ public class UMLDoclet extends StandardDoclet {
 
     @Override
     public Set<Option> getSupportedOptions() {
-        return config.mergeOptionsWith(super.getSupportedOptions());
+        if (supportedOptions == null) {
+            supportedOptions = unmodifiableSet(config.mergeOptionsWith(super.getSupportedOptions()));
+        }
+        return supportedOptions;
     }
 
     @Override
