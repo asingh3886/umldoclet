@@ -62,9 +62,9 @@ public class UMLDoclet extends StandardDoclet {
     public void init(Locale locale, Reporter reporter) {
         config.init(locale, reporter);
         super.init(locale, reporter);
-        getSupportedOptions().stream()
-                .filter(option -> option.getNames().contains("-taglet")).findFirst()
-                .ifPresent(option -> option.process("-taglet", singletonList(UMLTaglet.class.getName())));
+//        getSupportedOptions().stream()
+//                .filter(option -> option.getNames().contains("-taglet")).findFirst()
+//                .ifPresent(option -> option.process("-taglet", singletonList(UMLTaglet.class.getName())));
     }
 
     @Override
