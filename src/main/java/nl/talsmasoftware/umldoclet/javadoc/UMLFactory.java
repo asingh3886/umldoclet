@@ -41,6 +41,7 @@ import java.util.stream.Stream;
 
 import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.toCollection;
+import static java.util.stream.Collectors.toList;
 import static javax.lang.model.element.ElementKind.ENUM;
 import static nl.talsmasoftware.umldoclet.uml.Reference.Side.from;
 import static nl.talsmasoftware.umldoclet.uml.Reference.Side.to;
@@ -80,12 +81,14 @@ public class UMLFactory {
 
     Field createField(Type containingType, VariableElement variable) {
         Set<Modifier> modifiers = requireNonNull(variable, "Variable element is <null>.").getModifiers();
-        return new Field(containingType,
+        Field field = new Field(containingType,
                 visibilityOf(modifiers),
                 modifiers.contains(Modifier.STATIC),
                 variable.getSimpleName().toString(),
                 TypeNameVisitor.INSTANCE.visit(variable.asType())
         );
+        if (env.getElementUtils().isDeprecated(variable)) field = field.deprecated();
+        return field;
     }
 
     private Parameters createParameters(List<? extends VariableElement> params) {
@@ -98,9 +101,13 @@ public class UMLFactory {
         return result;
     }
 
+    private boolean isOnlyDefaultConstructor(Collection<ExecutableElement> constructors) {
+        return constructors.size() == 1 && constructors.iterator().next().getParameters().isEmpty();
+    }
+
     Method createConstructor(Type containingType, ExecutableElement executableElement) {
         Set<Modifier> modifiers = requireNonNull(executableElement, "Executable element is <null>.").getModifiers();
-        return new Method(containingType,
+        Method constructor = new Method(containingType,
                 visibilityOf(modifiers),
                 modifiers.contains(Modifier.ABSTRACT),
                 modifiers.contains(Modifier.STATIC),
@@ -108,11 +115,13 @@ public class UMLFactory {
                 createParameters(executableElement.getParameters()),
                 null
         );
+        if (env.getElementUtils().isDeprecated(executableElement)) constructor = constructor.deprecated();
+        return constructor;
     }
 
     Method createMethod(Type containingType, ExecutableElement executableElement) {
         Set<Modifier> modifiers = requireNonNull(executableElement, "Executable element is <null>.").getModifiers();
-        return new Method(containingType,
+        Method method = new Method(containingType,
                 visibilityOf(modifiers),
                 modifiers.contains(Modifier.ABSTRACT),
                 modifiers.contains(Modifier.STATIC),
@@ -120,6 +129,8 @@ public class UMLFactory {
                 createParameters(executableElement.getParameters()),
                 TypeNameVisitor.INSTANCE.visit(executableElement.getReturnType())
         );
+        if (env.getElementUtils().isDeprecated(executableElement)) method = method.deprecated();
+        return method;
     }
 
     static Visibility visibilityOf(Set<Modifier> modifiers) {
@@ -164,10 +175,13 @@ public class UMLFactory {
                 .filter(VariableElement.class::isInstance).map(VariableElement.class::cast)
                 .forEach(field -> addChild(type, createField(type, field)));
 
-        enclosedElements.stream()
+        List<ExecutableElement> constructors = enclosedElements.stream()
                 .filter(elem -> ElementKind.CONSTRUCTOR.equals(elem.getKind()))
                 .filter(ExecutableElement.class::isInstance).map(ExecutableElement.class::cast)
-                .forEach(constructor -> addChild(type, createConstructor(type, constructor)));
+                .collect(toList());
+        if (!isOnlyDefaultConstructor(constructors)) {
+            constructors.forEach(constructor -> addChild(type, createConstructor(type, constructor)));
+        }
 
         enclosedElements.stream()
                 .filter(elem -> ElementKind.METHOD.equals(elem.getKind()))
@@ -175,7 +189,7 @@ public class UMLFactory {
                 .filter(method -> !isMethodFromExcludedSuperclass(method))
                 .forEach(method -> addChild(type, createMethod(type, method)));
 
-        return type;
+        return env.getElementUtils().isDeprecated(typeElement) ? type.deprecated() : type;
     }
 
     private boolean isMethodFromExcludedSuperclass(ExecutableElement method) {
